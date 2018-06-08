@@ -1,13 +1,10 @@
-#This is my extremely hackish iris and pupil tracker/detector.
 import time
 import cv2
 import pupil_detect
-#I don't use the face classifier. But I'm putting it here in case someone else
-#wants to.
+####33333
 #faceCascadeClassifier = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 eyeCascadeClassifier = cv2.CascadeClassifier("haarcascade_eye.xml")
-
-
+####3333
 def detect_objects(image, objectClassifier, divider=4):
     #increase divider for more speed, less accuracy
     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -18,7 +15,7 @@ def detect_objects(image, objectClassifier, divider=4):
     haar_flags = 0
     objects = objectClassifier.detectMultiScale(small_image, haar_scale, min_neighbors, haar_flags, min_object_size)
     return objects*divider
-
+#####3333
 class Eye():
     def __init__(self,x, y, x2, y2):
         self.x = x
@@ -29,6 +26,7 @@ class Eye():
         self.height = y2 - y
         self.topcorner = (x, y)
         self.bottomcorner = (x2, y2)
+#333333
 def draw(photo):
     image = photo.copy()
     image_to_show = image
