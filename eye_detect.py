@@ -127,6 +127,7 @@ def draw(photo):
 
 def main():
     camera = cv2.VideoCapture(0)
+    #camera = cv2.VideoCapture("/home/angel/Videos/4K Video Downloader/Pupil Dilation.mp4")
     found_iris_counter = 0
     while(1):
         success, photo = camera.read()

@@ -1,6 +1,5 @@
 import cv2
-import numpy
-np = numpy
+import numpy as np
 def mask_image_by_feature(image, feature):
     circle_mask_image = np.zeros(image.shape, dtype=np.uint8)
     cv2.circle(circle_mask_image, (int(feature.pt[0]), int(feature.pt[1])), int(feature.size/2), 1, -1)
@@ -25,7 +24,8 @@ def draw_circle_for_feature(image, feature, color=255, thickness=1):
     cv2.circle(image, (int(feature.pt[0]), int(feature.pt[1])), int(feature.size/2), color, thickness)
 ####33333
 def find_pupil(gray_image, minsize=.1, maxsize=.5):
-    detector = cv2.FeatureDetector_create('MSER')
+    # detector = cv2.FeatureDetector_create('MSER')
+    detector = cv2.MSER_create()
     features_all = detector.detect(gray_image)
     features_big = [feature for feature in features_all if feature.size > gray_image.shape[0]*minsize]
     features_small = [feature for feature in features_big if feature.size < gray_image.shape[0]*maxsize]
@@ -53,6 +53,7 @@ def draw(photo):
 #####3333
 def main():
     camera = cv2.VideoCapture(0)
+    # camera = cv2.VideoCapture("/home/angel/Videos/4K Video Downloader/Pupil Dilation.mp4")
     while(1):
         success, photo = camera.read()
         if draw(photo) > 0:
